@@ -1,13 +1,11 @@
 const Koa = require('koa');
 
+const router = require('./router');
+
 const app = new Koa();
 
-function listenFn(...params) {
-  console.log(params);
-}
+app.use(router.routes());
 
-app.use(ctx => {
-  ctx.body = 'adss';
-});
-
-app.listen(9999, '127.0.0.1', 10, listenFn);
+app.listen(9999, '127.0.0.1', 10, () =>
+  console.log('server start, open: http://127.0.0.1:9999')
+);
